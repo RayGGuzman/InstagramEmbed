@@ -25,8 +25,7 @@
         {
             var val = Interlocked.Increment(ref _counter);
             // Show on every ~7th request (≈14 %)
-            if (val % 7 != 0) return null;
-            return DonateMessages[val % DonateMessages.Length];
+            return null
         }
     }
 

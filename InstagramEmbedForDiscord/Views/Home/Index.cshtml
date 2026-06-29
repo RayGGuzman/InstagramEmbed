@@ -44,7 +44,6 @@
 
 
     bool emitActivityLink = isMultiMedia;
-    string? maybeDonate = ViewBag.MaybeDonate;
 }
 
 @if (isTelegram)
@@ -143,12 +142,6 @@ else
             <meta property="twitter:title" content="vxinstagram" />
         }
 
-
-        @if (emitActivityLink || maybeDonate != null)
-        {
-            <link rel="alternate" type="application/json+oembed"
-                  href="@(baseUrl)/oembed?username=@(username ?? "instagram")&desc=@oembedDesc&likescomments=@Uri.EscapeDataString(likesComments)&donateMessage=@maybeDonate" />
-        }
         @* activity+json only for multi-media posts — triggers Discord's image grid *@
         @if (emitActivityLink || isTelegram)
         {
@@ -171,10 +164,6 @@ else
                 <img class="mb-2" style="height:2.5rem"
                      src="https://img.buymeacoffee.com/button-api/?text=Buy+me+a+coffee&emoji=☕&slug=alsauce&button_colour=954b89&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" />
             </a>
-        </div>
-
-        <div class="container mt-5" style=" max-width:860px">
-            <partial name="~/Views/Home/_Partial/DonationMessage.cshtml"></partial>
         </div>
 
         <div class="row g-4 align-items-start w-100 justify-content-center mx-auto p-4">

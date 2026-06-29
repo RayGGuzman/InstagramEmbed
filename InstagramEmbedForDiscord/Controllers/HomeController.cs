@@ -12,7 +12,6 @@ namespace InstagramEmbed.Controllers;
 public sealed class HomeController : Controller
 {
     private readonly PostCacheService _posts;
-    private readonly DonateMessageService _donate;
     private readonly HttpClient _http;
     private readonly ILogger<HomeController> _logger;
     private readonly DonationSettings _settings;
@@ -24,7 +23,6 @@ public sealed class HomeController : Controller
         IHttpClientFactory factory, ILogger<HomeController> logger, IOptions<DonationSettings> options)
     {
         _posts = posts;
-        _donate = donate;
         _http = factory.CreateClient("regular");
         _logger = logger;
         _settings = options.Value;
@@ -115,7 +113,6 @@ public sealed class HomeController : Controller
                 : id;
 
             ViewBag.PostId = cacheId;
-            ViewBag.MaybeDonate = _donate.MaybeGetDonateMessage();
 
             var post = await _posts.GetOrFetchAsync(cacheId, instagramUrl);
             if (post == null) return NotFound();
