@@ -25,7 +25,7 @@
         {
             var val = Interlocked.Increment(ref _counter);
             // Show on every ~7th request (≈14 %)
-            return null
+            return null;
         }
     }
 
